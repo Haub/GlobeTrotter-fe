@@ -1,4 +1,6 @@
 import App, { Container } from 'next/app';
+import Page from '../components/Page';
+
 
 class MyApp extends App {
   
@@ -7,8 +9,9 @@ class MyApp extends App {
 
     return (
       <Container>
-        <p>I'm on every page</p>
-        <Component />
+        <Page>
+          <Component />
+        </Page>
       </Container>
     )
   }
