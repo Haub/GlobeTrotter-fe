@@ -14,7 +14,8 @@ const Logo = styled.h1`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-  }
+    margin-left: 1rem;
+  } 
   @media (max-width: 1300px) {
     margin: 0;
     text-align: center;
@@ -45,7 +46,12 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>GlobeTrotter</a>
+          <a>
+            <img 
+              src="../static/hiker.png"
+              alt="Hiker"
+              height="42"
+            />GlobeTrotter</a>
         </Link>
       </Logo>
       <Nav />
