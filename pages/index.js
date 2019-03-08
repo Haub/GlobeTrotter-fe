@@ -1,9 +1,8 @@
-import Link from 'next/link';
+import Items from '../components/Items.js';
 
 const Home = props => (
     <div>
-      <h1>Hey!</h1>
-      
+      <Items />
     </div>
 );
   
