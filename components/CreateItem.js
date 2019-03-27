@@ -42,21 +42,23 @@ class CreateItem extends Component {
   };
 
   uploadFile = async e => {
-    console.log('uploading file...');
+    console.log('hola')
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
     data.append('upload_preset', 'globetrotter');
-
-    const res = await fetch('https://res.cloudinary.com/dctvp6vfw/image/upload', {
+    console.log('hello')
+    const res = await fetch('https://api.cloudinary.com/v1_1/dctvp6vfw/image/upload', {
       method: 'POST',
       body: data,
     });
-    const file = await res.json();
-    console.log(file);
+    
+    const photo = await res.json();
+    console.log(photo)
     this.setState({
-      image: file.secure_url,
-      largeImage: file.eager[0].secure_url,
+      image: photo.secure_url,
+      largeImage: photo.secure_url
+      // largeImage: file.eager[0].secure_url,
     });
   };
   render() {
@@ -68,11 +70,13 @@ class CreateItem extends Component {
               e.preventDefault();
               // call the mutation
               const res = await createItem();
-              // change them to the single item page
+              console.log(res)
+              //change them to the single item page
               Router.push({
                 pathname: '/item',
                 query: { id: res.data.createItem.id },
               });
+              console.log(res.data)
             }}
           >
             <Error error={error} />
