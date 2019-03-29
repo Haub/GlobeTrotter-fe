@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Error from './ErrorMessage';
-import styled from 'styled-componennts';
+import styled from 'styled-components';
 
-
+const SingleItemStyles = styled.div`
+  max-width: 1200px;
+  margin: 2rem auto;
+  box-shadow: ${props => props.theme.bs};
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  min-height: 800px;
+`
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -30,7 +38,11 @@ class SingleItem extends Component {
           if(error) return <Error error={error} />
 ;         if(loading) return <p>Loading...</p>
           if(!data.item) return <p>No item found for {this.props.id}! </p>
-          return <p> SINGLE ITEM COMPONENT!!! {this.props.id}</p>
+          return (
+            <SingleItemStyles>
+              <img src={item.largeImage} alt={item.title} />
+            </SingleItemStyles>
+          );
         }}
       </Query>
     );
